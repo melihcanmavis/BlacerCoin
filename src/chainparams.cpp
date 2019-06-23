@@ -54,20 +54,20 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0000089143ac3ea35bfe1818810c9d00c4d94fa2176b99c991a3c0b991de01d3"));
+    (0, uint256("0x000005734e4bfed1004554971e55dd683abc73314a36f7b4d79300681e0a85aa"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1547395200, // * UNIX timestamp of last checkpoint block
+    1561288141, // * UNIX timestamp of last checkpoint block
     0,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
-    boost::assign::map_list_of(0, uint256("0x001"));
+    boost::assign::map_list_of(0, uint256("0x000005734e4bfed1004554971e55dd683abc73314a36f7b4d79300681e0a85aa"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1547395200,
+    1561288141,
     0,
     250};
 
@@ -75,7 +75,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     boost::assign::map_list_of(0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1547395200,
+    1561288141,
     0,
     100};
 
@@ -108,13 +108,14 @@ public:
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
+         *06 8D A3AE
          */
-        pchMessageStart[0] = 0x36;
-        pchMessageStart[1] = 0x65;
-        pchMessageStart[2] = 0x70;
-        pchMessageStart[3] = 0x6b;
-        vAlertPubKey = ParseHex("04bdea0e9d8a8f889109952ea35ef68337089fed37fdf516a887cd7224f68d2b5b331a73e96d81edec2526950c6bdd94b316503c7d86dfebc5d718eadeeff0af76");
-        nDefaultPort = 24433;
+        pchMessageStart[0] = 0x06;
+        pchMessageStart[1] = 0x8d;
+        pchMessageStart[2] = 0xa3;
+        pchMessageStart[3] = 0xae;
+        vAlertPubKey = ParseHex("045abb8e74c28544cc2b7e37b38dd380d4724d3211e3778727cdea99cefe10ab4f94fb83ebb0a1d76cfba815e118e3eb9d29ed8da4ed1f29b51081c28fe4776b76");
+        nDefaultPort = 15308;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // BlacerCoin starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
@@ -133,7 +134,7 @@ public:
         nLastPOWBlock = 200;
         nModifierUpdateBlock = 2147483646;
         nZerocoinStartHeight = 201;
-        nZerocoinStartTime = 1547424000;        // 01/14/2019 @ 12:00am (UTC)
+        nZerocoinStartTime = 1563885907;        // 01/14/2019 @ 12:00am (UTC)
         nBlockEnforceSerialRange = 301;         // Enforce serial range starting this block
         nBlockRecalculateAccumulators = ~1;     // Trigger a recalculation of accumulators
         nBlockFirstFraudulent = ~1;             // First block that bad serials emerged
@@ -163,16 +164,17 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1547395200;
+        genesis.nTime = 1561288141;
         genesis.nBits = 0x1e0fffff;
-        genesis.nNonce = 548307;
-
+        genesis.nNonce = 3223288;
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0000089143ac3ea35bfe1818810c9d00c4d94fa2176b99c991a3c0b991de01d3"));
+
+
+        assert(hashGenesisBlock == uint256("000005734e4bfed1004554971e55dd683abc73314a36f7b4d79300681e0a85aa"));
         assert(genesis.hashMerkleRoot == uint256("eb437aac8b11597bd64c7ddbdbb2af101eaabceb77bdad9ba03e8e3b19182d65"));
 
-        vSeeds.push_back(CDNSSeedData("Node-1", "node1.blacercoin.com"));      // Single node address
-        vSeeds.push_back(CDNSSeedData("Node-2", "node2.blacercoin.com"));      // Single node address
+        vFixedSeeds.clear(); //! Mainnet mode doesn't have any fixed seeds.
+        vSeeds.clear();      //! Mainnet mode doesn't have any DNS seeds.
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 26);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);
@@ -184,19 +186,21 @@ public:
 
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
-        fMiningRequiresPeers = true;
+
+
         fAllowMinDifficultyBlocks = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
-        fMineBlocksOnDemand = false;
         fSkipProofOfWorkCheck = false;
         fTestnetToBeDeprecatedFieldRPC = false;
         fHeadersFirstSyncingActive = false;
+        fMiningRequiresPeers = false;
+        fMineBlocksOnDemand = true;
 
         nPoolMaxTransactions = 3;
         strSporkKey = "0431a54687dd0b33415544ead0d7e6d1d37da710fc49ae39310e0cb07405784ac5bfc1084e74e5510b3f5598805cc89508af47415870ddc9646ff79a7eec990ab7";
         strObfuscationPoolDummyAddress = "BXm1KAAjj3wE6FE2M4LY49aYYAwX39ynf7";
-        nStartMasternodePayments = 1547395200; //Wed, 25 Jun 2014 20:36:16 GMT
+        nStartMasternodePayments = 1561288141; //Wed, 25 Jun 2014 20:36:16 GMT
 
         /** Zerocoin */
         zerocoinModulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
@@ -232,11 +236,11 @@ public:
     {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-        pchMessageStart[0] = 0x4e;
-        pchMessageStart[1] = 0x6b;
-        pchMessageStart[2] = 0x56;
-        pchMessageStart[3] = 0x32;
-        vAlertPubKey = ParseHex("041a06f89add8f7d8ae5f84b81c1f92aff0a2b3761eab4e6a3296b47acae77e6ec1763223e8e0693381a191917b3ff879b8ca0d20b1bcf251b39ee232121f69990");
+        pchMessageStart[0] = 0x06;
+        pchMessageStart[1] = 0x8d;
+        pchMessageStart[2] = 0xa3;
+        pchMessageStart[3] = 0xae;
+        vAlertPubKey = ParseHex("045abb8e74c28544cc2b7e37b38dd380d4724d3211e3778727cdea99cefe10ab4f94fb83ebb0a1d76cfba815e118e3eb9d29ed8da4ed1f29b51081c28fe4776b76");
         nDefaultPort = 24434;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
@@ -251,7 +255,7 @@ public:
         nModifierUpdateBlock = 2147483646;
         nMaxMoneyOut = 43199500 * COIN;
         nZerocoinStartHeight = 201;
-        nZerocoinStartTime = 1547208000;        // 01/11/2019 @ 12:00pm (UTC)
+        nZerocoinStartTime = 1563885907;        // 01/11/2019 @ 12:00pm (UTC)
         nBlockEnforceSerialRange = 301;         // Enforce serial range starting this block
         nBlockRecalculateAccumulators = ~1;     // Trigger a recalculation of accumulators
         nBlockFirstFraudulent = ~1;             // First block that bad serials emerged
@@ -261,11 +265,11 @@ public:
         nBlockZerocoinV2 = 2147483646;          //!> The block that zerocoin v2 becomes active
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1547395200;
-        genesis.nNonce = 548307;
+        genesis.nTime = 1561288141;
+        genesis.nNonce = 3223288;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0000089143ac3ea35bfe1818810c9d00c4d94fa2176b99c991a3c0b991de01d3"));
+        assert(hashGenesisBlock == uint256("000005734e4bfed1004554971e55dd683abc73314a36f7b4d79300681e0a85aa"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -282,17 +286,17 @@ public:
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
 
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fAllowMinDifficultyBlocks = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
-        fMineBlocksOnDemand = false;
+        fMineBlocksOnDemand = true;
         fTestnetToBeDeprecatedFieldRPC = true;
 
         nPoolMaxTransactions = 2;
         strSporkKey = "040529cea3d2b6b198ee174293d9d2a4f536e2602a91a3fe22f0c0e52ff555f9e75da584b59c75954dbd27bac33db1e78843f25063869bcb63f56a5b66aadf4a9a";
         strObfuscationPoolDummyAddress = "yJTHoScrVozvLRbN4eEaya8Vd2w4rSHV3g";
-        nStartMasternodePayments = 1547395200; //Fri, 09 Jan 2015 21:05:58 GMT
+        nStartMasternodePayments = 1561288141; //Fri, 09 Jan 2015 21:05:58 GMT
         nBudget_Fee_Confirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short
                                        // here because we only have a 8 block finalization window on testnet
     }
@@ -314,10 +318,10 @@ public:
         networkID = CBaseChainParams::REGTEST;
         strNetworkID = "regtest";
         strNetworkID = "regtest";
-        pchMessageStart[0] = 0x2f;
-        pchMessageStart[1] = 0x61;
-        pchMessageStart[2] = 0x1a;
-        pchMessageStart[3] = 0x51;
+        pchMessageStart[0] = 0x06;
+        pchMessageStart[1] = 0x8d;
+        pchMessageStart[2] = 0xa3;
+        pchMessageStart[3] = 0xae;
         nSubsidyHalvingInterval = 150;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
@@ -326,13 +330,13 @@ public:
         nTargetTimespan = 24 * 60 * 60; // BlacerCoin: 1 day
         nTargetSpacing = 1 * 60;        // BlacerCoin: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        genesis.nTime = 1547395200;
-        genesis.nBits = 0x207fffff;
-        genesis.nNonce = 554784;
+        genesis.nTime = 1561288141;
+        genesis.nBits = 0x1e0fffff;
+        genesis.nNonce = 3223288;
 
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 24435;
-        assert(hashGenesisBlock == uint256("00000429bf7bc8b6ac87df7eff7f3a7646d700b20d30ff379ea2281da21e4020"));
+        assert(hashGenesisBlock == uint256("000005734e4bfed1004554971e55dd683abc73314a36f7b4d79300681e0a85aa"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
