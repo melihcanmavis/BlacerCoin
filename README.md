@@ -12,7 +12,17 @@ Installation of libraries (using root user):
     
 
     sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get install vim -y && sudo apt-get install python-dev -y &&                     sudo apt-get install libevent-dev -y &&  sudo apt-get install python-virtualenv -y && apt-get install git -y
-    
+    sudo apt update
+    sudo apt-get install libgmp3-dev
+    sudo apt install python rename git software-properties-common libzmq3-dev libqrencode-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libminiupnpc-dev -y
+    sudo add-apt-repository ppa:bitcoin/bitcoin
+    sudo apt update
+    sudo apt install libdb4.8-dev libdb4.8++-dev -y
+    sudo apt-get install libdb4.8-dev libdb4.8++-dev
+    apt-get install libzmq3-dev -y
+    apt-get install libssl1.0-dev -y
+    sudo apt-get install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev
+    sudo apt-get install libdb++-dev
     add-apt-repository ppa:bitcoin/bitcoin -y
     apt-get update
     apt-get install -y build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils
