@@ -9,12 +9,35 @@ It is recommended [use the shell script](https://github.com/blcrproject/lgs-inst
 Quick installation of the BlacerCoin daemon under linux. See detailed instructions there [build-unix.md](build-unix.md)
 
 Installation of libraries (using root user):
+    
 
+    sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get install vim -y && sudo apt-get install python-dev -y &&                     sudo apt-get install libevent-dev -y &&  sudo apt-get install python-virtualenv -y && apt-get install git -y
+    
     add-apt-repository ppa:bitcoin/bitcoin -y
     apt-get update
     apt-get install -y build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils
     apt-get install -y libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev
     apt-get install -y libdb4.8-dev libdb4.8++-dev
+
+
+
+2a. OpenSLL- Install OpenSSL dependencies on Windows.
+Download the latest version of OpenSSL https://www.openssl.org/source/openssl-1.0.1j.tar.gz to your deps folder.
+    cd /c/deps/
+    tar xvfz openssl-1.0.1j.tar.gz
+    cd openssl-1.0.1j
+    ./Configure no-zlib no-shared no-dso no-krb5 no-camellia no-capieng no-cast no-cms no-dtls1 no-gost no-gmp no-heartbeats no-idea no-jpake no-md2 no-mdc2 no-rc5 no-rdrand no-rfc3779 no-rsax no-sctp no-seed no-sha0 no-static_engine no-whirlpool no-rc2 no-rc4 no-ssl2 no-ssl3 mingw
+    make
+
+2b. Berkeley DB
+Download http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz and place in your deps folder.
+In the MinGW shell use the following code.
+    cd /c/deps/
+    tar xvfz db-4.8.30.NC.tar.gz
+    cd db-4.8.30.NC/build_unix
+    ../dist/configure --enable-mingw --enable-cxx --disable-shared --disable-replication
+    make
+    
 
 Cloning the repository and compiling (use any user with the sudo group):
 
