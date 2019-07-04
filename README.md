@@ -32,12 +32,13 @@ Installation of libraries (using root user):
 
 
 2a. OpenSLL- Install OpenSSL dependencies on Windows.
-Download the latest version of OpenSSL https://www.openssl.org/source/openssl-1.0.1j.tar.gz to your deps folder.
 
-    cd /c/deps/
-    tar xvfz openssl-1.0.1j.tar.gz
-    cd openssl-1.0.1j
-    ./Configure no-zlib no-shared no-dso no-krb5 no-camellia no-capieng no-cast no-cms no-dtls1 no-gost no-gmp no-heartbeats no-idea no-jpake no-md2 no-mdc2 no-rc5 no-rdrand no-rfc3779 no-rsax no-sctp no-seed no-sha0 no-static_engine no-whirlpool no-rc2 no-rc4 no-ssl2 no-ssl3 mingw
+   Download and unpack OpenSSL with: 
+   
+    curl -k https://www.openssl.org/source/openssl-1.0.2d.tar.gz -o openssl-1.0.2d.tar.gz
+    tar xzfi openssl-1.0.2d.tar.gz
+    cd openssl-1.0.2d
+    ./config
     make
 
 2b. Berkeley DB
