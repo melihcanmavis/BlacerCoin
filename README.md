@@ -33,6 +33,7 @@ Installation of libraries (using root user):
 
 2a. OpenSLL- Install OpenSSL dependencies on Windows.
 Download the latest version of OpenSSL https://www.openssl.org/source/openssl-1.0.1j.tar.gz to your deps folder.
+
     cd /c/deps/
     tar xvfz openssl-1.0.1j.tar.gz
     cd openssl-1.0.1j
@@ -42,6 +43,7 @@ Download the latest version of OpenSSL https://www.openssl.org/source/openssl-1.
 2b. Berkeley DB
 Download http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz and place in your deps folder.
 In the MinGW shell use the following code.
+
     cd /c/deps/
     tar xvfz db-4.8.30.NC.tar.gz
     cd db-4.8.30.NC/build_unix
